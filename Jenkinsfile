@@ -45,7 +45,11 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                //implement Kubernetes deployment here
+                script{
+                    kubernetesDeploy(kubeconfigId: 'kubeconfig-credentials-id',
+                        configs: 'kubedeploy.yml',
+                    )
+                }               
             }
         }
     }
